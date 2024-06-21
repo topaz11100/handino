@@ -1,0 +1,8 @@
+pip
+numpy
+opencv-python
+tensorflow
+mediapipe
+pyserial
+pyglet
+ipython

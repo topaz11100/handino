@@ -1,0 +1,13 @@
+시작시간자정
+약40분소요
+
+아나콘다 라이브러리 버전(23.09.12설치)(23.09.12 버그체크완료)
+# Name                    Version                   Build  Channel
+anaconda                  2023.07                 py310_1
+ipython                   8.12.0          py310haa95532_0
+mediapipe                 0.10.3                   pypi_0    pypi
+opencv-python             4.8.0.76                 pypi_0    pypi
+pyglet                    2.0.9                    pypi_0    pypi
+pyserial                  3.5                      pypi_0    pypi
+python                    3.10.12              h966fe2a_0
+tensorflow                2.13.0                   pypi_0    pypi

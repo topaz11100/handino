@@ -1,8 +1,6 @@
-pip
-numpy
-opencv-python
-tensorflow
 mediapipe
+tensorflow
+cv2
 pyserial
-pyglet
 ipython
+pyglet

@@ -1,5 +1,5 @@
 //필수 모듈 불러오기
-#include <Servo.h>
+#include<Servo.h>
 
 //서보모터 변수 지정
 Servo servo_1;
@@ -7,10 +7,6 @@ Servo servo_2;
 Servo servo_3;
 Servo servo_4;
 Servo servo_5;
-
-//각도 배열 주소 변수
-int idx = 0;
-int angle[5]={165,165,165,165,165};
 
 //초기설정
 void setup() {
@@ -67,29 +63,60 @@ void move(int num, int angle){
   }
 }
 
+//바위
+void rock(){
+  move(1,0);
+  move(2,0);
+  move(3,0);
+  move(4,0);
+  move(5,0);
+}
+
+//가위
+void scissor(){
+  move(1,0);
+  move(2,180);
+  move(3,180);
+  move(4,0);
+  move(5,0);
+}
+
+//보
+void paper(){
+  move(1,180);
+  move(2,180);
+  move(3,180);
+  move(4,180);
+  move(5,180);
+}
+
+//따봉
+void good(){
+  move(1,180);
+  move(2,0);
+  move(3,0);
+  move(4,0);
+  move(5,0);
+}
+
 //반복
 void loop() {
   //시리얼 창에 무언가 들어오면
   while (Serial.available() > 0) {
     // 시리얼 통신으로 받은 데이터를 읽어옴
     char data = Serial.read();
-    // 공백들어오면 배열 주소 초기화
-    if (data == ' ' || idx>4){
-      idx=0;
+    //데이터에따라 가위바위보 실행
+    if (data == 'r') {
+      paper();  
     }
-    //개행문자가 같이 읽히므로 제외시키기
-    else if((int)data==10){}
-    //순서대로 넣기
-    else{
-      //받은문자->각도변환
-      int adata=(int)data;
-      adata=165*(adata-33)/93;
-      angle[idx]=adata;
-      idx++;
+    else if (data == 'p') {
+      scissor();  
     }
-    //angle에 저장된 값을 모터에 보냄
-    for(int i=0;i<5;i++){
-      move(i+1,angle[i]);
+    else if (data == 's') {
+      rock();
+    }
+    else if (data == 'n') {
+      good();
     }
   }
 }

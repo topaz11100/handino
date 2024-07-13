@@ -9,6 +9,7 @@ const int speed = 1000; //마이크로초 = 0.001밀리초 = 0.000001초
 void setup(){
     Serial.begin(9600);
     motor_init();
+    Serial.println("Start !");
 }
 void motor_init(){
     for(int i=0; i<5; i+=1){
@@ -45,10 +46,9 @@ void move_one(int num, int angle, int speed){
 }
 
 void rsp(int num){
-    int angle[5] = { {0,0,0,0,0}, {0,180,180,0,0}, {180,180,180,180,180}}
+    int angle[3][5] = { {0,0,0,0,0}, {0,180,180,0,0}, {180,180,180,180,180} };
     move_arr(angle[num], speed);
 }
-
 void angle_move(){
     int angle[5] = {angle_receive(), angle_receive(), angle_receive(), angle_receive(), angle_receive()};
     move_arr(angle, speed);
@@ -60,6 +60,7 @@ void loop(){
     else if( received == 's' ) rsp(1);
     else if( received == 'p' ) rsp(2);
     else if( received == 'a' ) angle_move();
+    else if( received == 'i' ) Serial.println(angle_receive());
 }
 
 char receive(){
@@ -68,11 +69,12 @@ char receive(){
 }
 int angle_receive(){
     String angle = "";
-    char temp;
-    do {
-        temp = Serial.read();
-        angle += temp();
-    } while(temp != ';');
+    while(true){
+      char temp = receive();
+      if      (temp == '?') continue;
+      else if (temp == ';') break;
+      angle += String(temp);
+    }
     return angle.toInt();
 }
 

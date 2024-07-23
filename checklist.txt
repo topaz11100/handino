@@ -1,6 +1,0 @@
-mediapipe
-tensorflow
-cv2
-pyserial
-ipython
-pyglet

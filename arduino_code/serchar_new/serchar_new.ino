@@ -38,8 +38,8 @@ void move_arr(int arr[], int speed){
 void move_one(int num, int angle, int speed){
     while(true){
         int temp = motor[num].read();
-        if     (temp < angle) motor[num].write(temp+1);
-        else if(temp > angle) motor[num].write(temp-1);
+        if      (temp < angle) motor[num].write(temp+1);
+        else if (temp > angle) motor[num].write(temp-1);
         else return;
         delayMicroseconds(speed);
     }
@@ -56,11 +56,10 @@ void angle_move(){
 
 void loop(){
     char received = receive();
-    if     ( received == 'r' ) rsp(0);
-    else if( received == 's' ) rsp(1);
-    else if( received == 'p' ) rsp(2);
-    else if( received == 'a' ) angle_move();
-    else if( received == 'i' ) Serial.println(angle_receive());
+    if      ( received == 'r' ) rsp(0);
+    else if ( received == 's' ) rsp(1);
+    else if ( received == 'p' ) rsp(2);
+    else if ( received == 'a' ) angle_move();
 }
 
 char receive(){

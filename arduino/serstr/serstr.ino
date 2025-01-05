@@ -20,6 +20,7 @@ void setup()
 void loop()
 {
   String input = receive_String('\n');
+  if (input == "") return;
   p.strip(input);
   p.fillintarr(angle);
   hand.move_arr(angle, speed);
